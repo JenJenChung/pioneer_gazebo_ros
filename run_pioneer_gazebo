@@ -1,0 +1,58 @@
+#!/bin/bash
+
+my_pid=$$
+echo "My process ID is $my_pid"
+
+echo "Launching roscore..."
+roscore &
+pid=$!
+sleep 1s
+
+echo "Launching Gazebo..."
+roslaunch pioneer_gazebo pioneer_world.launch &
+pid="$pid $!"
+
+sleep 3s
+
+echo "Launching publishers..."
+rosrun pioneer_ros pioneer_tf_broadcaster &
+pid="$pid $!"
+
+rosrun pioneer_ros pioneer_odom_publisher &
+pid="$pid $!"
+
+sleep 3s
+
+echo "Launching gmapping..."
+rosrun gmapping slam_gmapping scan:=/pioneer/laser/scan &
+pid="$pid $!"
+
+echo "Launching navigation stack..."
+roslaunch pioneer_2dnav move_base.launch &
+pid="$pid $!"
+
+sleep 3s
+
+echo "Launching Rviz..."
+roslaunch pioneer_description pioneer_rviz.launch &
+
+sleep 3s
+
+echo "Launching pioneer controller..."
+rosparam load "$(rospack find pioneer_ros)/pioneer_controller_params.yaml" pioneer_ros &
+
+sleep 1s
+
+rosrun pioneer_ros pioneer_pid_controller &
+pid="$pid $!"
+#rosrun pioneer_ros pioneer_right_joint_controller &
+#pid="$pid $!"
+
+#echo "Launching volturnus controller..."
+#rosparam load "$(rospack find pioneer)/pioneer_controller_params.yaml" pioneer
+#rosrun pioneer pioneer_controller
+#pid="$pid $!"
+
+trap "echo Killing all processes.; kill -s TERM $pid; exit" SIGINT SIGTERM
+
+sleep 24h
