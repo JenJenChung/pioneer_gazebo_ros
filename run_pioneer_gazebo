@@ -12,7 +12,7 @@ echo "Launching Gazebo..."
 roslaunch pioneer_gazebo pioneer_world.launch &
 pid="$pid $!"
 
-sleep 3s
+sleep 5s
 
 echo "Launching publishers..."
 rosrun pioneer_ros pioneer_tf_broadcaster &
@@ -45,13 +45,6 @@ sleep 1s
 
 rosrun pioneer_ros pioneer_pid_controller &
 pid="$pid $!"
-#rosrun pioneer_ros pioneer_right_joint_controller &
-#pid="$pid $!"
-
-#echo "Launching volturnus controller..."
-#rosparam load "$(rospack find pioneer)/pioneer_controller_params.yaml" pioneer
-#rosrun pioneer pioneer_controller
-#pid="$pid $!"
 
 trap "echo Killing all processes.; kill -s TERM $pid; exit" SIGINT SIGTERM
 
