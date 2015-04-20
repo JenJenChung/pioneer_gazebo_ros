@@ -20,7 +20,7 @@
     
     <!-- Dumpster -->
     <include>
-      <uri>model://dumpster</uri>
+      <uri>model://bookshelf</uri>
       <pose>2 1 0 0 0 0</pose>
     </include>
     

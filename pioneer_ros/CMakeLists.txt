@@ -27,3 +27,7 @@ add_dependencies(pioneer_tf_broadcaster ${catkin_EXPORTED_TARGETS})
 add_executable(pioneer_odom_publisher src/pioneer_odom_publisher.cpp)
 target_link_libraries(pioneer_odom_publisher ${catkin_LIBRARIES})
 add_dependencies(pioneer_odom_publisher ${catkin_EXPORTED_TARGETS})
+
+add_executable(pioneer_pid_controller src/pioneer_pid_controller.cpp)
+target_link_libraries(pioneer_pid_controller ${catkin_LIBRARIES})
+add_dependencies(pioneer_pid_controller ${catkin_EXPORTED_TARGETS})

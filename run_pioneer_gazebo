@@ -12,7 +12,7 @@ echo "Launching Gazebo..."
 roslaunch pioneer_gazebo pioneer_world.launch &
 pid="$pid $!"
 
-sleep 5s
+sleep 10s
 
 echo "Launching publishers..."
 rosrun pioneer_ros pioneer_tf_broadcaster &
