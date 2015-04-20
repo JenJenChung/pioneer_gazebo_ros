@@ -30,7 +30,8 @@
     <collision>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<box size="0.43 0.277 0.17"/>
+				<mesh filename="package://pioneer_description/meshes/p3dx_meshes/chassis.stl"/>
+				<!--box size="0.43 0.277 0.17"/-->
 			</geometry>
 		</collision>
 		<inertial>
@@ -67,7 +68,8 @@
 		<collision>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<box size="0.44 0.38 0.005"/>
+				<mesh filename="package://pioneer_description/meshes/p3dx_meshes/top.stl"/>
+				<!--box size="0.44 0.38 0.005"/-->
 			</geometry>
 		</collision>
 	</link>
@@ -100,7 +102,7 @@
 	  <collision>
 		  <origin xyz="0 0 0" rpy="0 0 0"/>
 		  <geometry>
-			  <box size="0 0 0"/>
+			  <mesh filename="package://pioneer_description/meshes/p3dx_meshes/swivel.stl"/>
 		  </geometry>
 	  </collision>
 	</link>
@@ -123,7 +125,7 @@
 	  <collision>
 		  <origin xyz="0 0 0" rpy="0 0 0"/>
 		  <geometry>
-			  <box size="0 0 0"/>
+			  <mesh filename="package://pioneer_description/meshes/p3dx_meshes/center_hubcap.stl"/>
 		  </geometry>
 	  </collision>
 	</link>
@@ -153,9 +155,10 @@
 		  <material name="WheelBlack"/>
 	  </visual>
 	  <collision>
-		  <origin xyz="0 0 0" rpy="${-3.1415927/2.0} 0 0"/>
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
 		  <geometry>
-			  <cylinder radius="0.0375" length="0.03"/>
+		    <mesh filename="package://pioneer_description/meshes/p3dx_meshes/center_wheel.stl"/>
+			  <!--<cylinder radius="0.0375" length="0.03"/>-->
 		  </geometry>
 	  </collision>
 	</link>
@@ -192,9 +195,10 @@
 			<material name="WheelBlack"/>
 		</visual>
 		<collision>
-			<origin xyz="0 0 0" rpy="${-3.1415927/2.0} 0 0"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<cylinder radius="0.092" length="0.04"/>
+			  <mesh filename="package://pioneer_description/meshes/p3dx_meshes/left_wheel.stl"/>
+				<!--<cylinder radius="0.092" length="0.04"/>-->
 			</geometry>
 		</collision>
 	</link>
@@ -216,7 +220,7 @@
 		<collision>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<box size="0 0 0"/>
+				<mesh filename="package://pioneer_description/meshes/p3dx_meshes/left_hubcap.stl"/>
 			</geometry>
 		</collision>
 	</link>
@@ -247,9 +251,10 @@
 			<material name="WheelBlack"/>
 		</visual>
 		<collision>
-			<origin xyz="0 0 0" rpy="${-3.1415927/2.0} 0 0"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<cylinder radius="0.092" length="0.04"/>
+			  <mesh filename="package://pioneer_description/meshes/p3dx_meshes/right_wheel.stl"/>
+				<!--<cylinder radius="0.092" length="0.04"/>-->
 			</geometry>
 		</collision>
 	</link>
@@ -271,7 +276,7 @@
 		<collision>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<box size="0 0 0"/>
+				<mesh filename="package://pioneer_description/meshes/p3dx_meshes/right_hubcap.stl"/>
 			</geometry>
 		</collision>
 	</link>
@@ -294,7 +299,7 @@
 		<collision>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<box size="0 0 0"/>
+				<mesh filename="package://pioneer_description/meshes/p3dx_meshes/front_sonar.stl"/>
 			</geometry>
 		</collision>
 	</link>
@@ -322,7 +327,7 @@
 		<collision>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<geometry>
-				<box size="0 0 0"/>
+				<mesh filename="package://pioneer_description/meshes/p3dx_meshes/back_sonar.stl"/>
 			</geometry>
 		</collision>
 	</link>
@@ -337,14 +342,15 @@
     <origin xyz="0 0 0.085" rpy="0 0 0"/>
     <parent link="camera_link"/>
     <child link="hokuyo_link"/>
-  </joint>-->
+  </joint>
 
   <!-- Hokuyo Laser -->
   <link name="hokuyo_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-	      <box size="0.05 0.05 0.071"/>
+        <mesh filename="package://pioneer_description/meshes/hokuyo.dae"/>
+	      <!--box size="0.05 0.05 0.071"/-->
       </geometry>
     </collision>
 

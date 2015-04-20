@@ -21,7 +21,7 @@
   
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
-      <robotNamespace>/pioneer</robotNamespace>
+      <robotNamespace>/</robotNamespace>
       <alwaysOn>true</alwaysOn>
       <updateRate>100</updateRate>
       <leftJoint>base_left_wheel_joint</leftJoint>
@@ -29,7 +29,7 @@
       <torque>5</torque>
       <wheelSeparation>0.39</wheelSeparation>
       <wheelDiameter>0.15</wheelDiameter>
-      <commandTopic>cmd_vel</commandTopic>
+      <commandTopic>/pioneer/cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_link</robotBaseFrame>
