@@ -6,13 +6,13 @@ echo "My process ID is $my_pid"
 echo "Launching roscore..."
 roscore &
 pid=$!
-sleep 1s
+sleep 5s
 
 echo "Launching Gazebo..."
 roslaunch pioneer_gazebo pioneer_world.launch &
 pid="$pid $!"
 
-sleep 10s
+sleep 5s
 
 echo "Launching publishers..."
 rosrun pioneer_ros pioneer_tf_broadcaster &
@@ -46,6 +46,6 @@ sleep 1s
 rosrun pioneer_ros pioneer_pid_controller &
 pid="$pid $!"
 
-trap "echo Killing all processes.; kill -s TERM $pid; exit" SIGINT SIGTERM
+trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
 
 sleep 24h
