@@ -14,7 +14,7 @@
   </gazebo>-->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/pioneer</robotNamespace>
+      <robotNamespace>/</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
@@ -29,7 +29,7 @@
       <torque>5</torque>
       <wheelSeparation>0.39</wheelSeparation>
       <wheelDiameter>0.15</wheelDiameter>
-      <commandTopic>/pioneer/cmd_vel</commandTopic>
+      <commandTopic>pioneer/cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_link</robotBaseFrame>
@@ -143,6 +143,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <robotNamespace>/</robotNamespace>
         <topicName>/pioneer/laser/scan</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>
@@ -165,8 +166,7 @@
           <near>0.02</near>
           <far>300</far>
         </clip>
-        <noise>
-          <type>gaussian</type>
+        <noise type="gaussian">
           <!-- Noise is sampled independently per pixel on each frame.  
                That pixel's noise value is added to each of its color
                channels, which at that point lie in the range [0,1]. -->
@@ -175,6 +175,7 @@
         </noise>
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <robotNamespace>/</robotNamespace>
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>pioneer/camera1</cameraName>
