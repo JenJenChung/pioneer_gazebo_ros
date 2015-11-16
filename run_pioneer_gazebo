@@ -6,13 +6,13 @@ echo "My process ID is $my_pid"
 echo "Launching roscore..."
 roscore &
 pid=$!
-sleep 1s
+sleep 5s
 
 echo "Launching Gazebo..."
 roslaunch pioneer_gazebo pioneer_world.launch &
 pid="$pid $!"
 
-sleep 10s
+sleep 5s
 
 echo "Launching transform publishers..."
 roslaunch pioneer_ros pioneer_ros.launch &
