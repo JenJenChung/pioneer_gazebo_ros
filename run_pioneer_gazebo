@@ -32,6 +32,7 @@ pid="$pid $!"
 
 echo "Launching Rviz..."
 roslaunch pioneer_description pioneer_rviz.launch &
+pid="$pid $!"
 
 trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
 
