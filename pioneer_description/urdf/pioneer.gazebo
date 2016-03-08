@@ -144,7 +144,7 @@
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
         <robotNamespace>/</robotNamespace>
-        <topicName>/pioneer/laser/scan</topicName>
+        <topicName>/base_scan</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>
