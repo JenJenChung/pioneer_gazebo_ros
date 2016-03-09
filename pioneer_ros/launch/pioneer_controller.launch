@@ -2,6 +2,5 @@
 	<!-- Robot controller parameters -->
   <node pkg="pioneer_ros" type="pioneer_pid_controller" name="pioneer_ros">
   	<rosparam file="$(find pioneer_ros)/pioneer_controller_params.yaml" command="load"/>
-  	<remap from="cmd_vel" to="cmd_vel_estop"/>
   </node>
 </launch>
