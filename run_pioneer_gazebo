@@ -14,11 +14,11 @@ pid="$pid $!"
 
 sleep 5s
 
-echo "Launching transform publishers..."
-roslaunch pioneer_ros pioneer_ros.launch &
-pid="$pid $!"
+#echo "Launching transform publishers..."
+#roslaunch pioneer_ros pioneer_ros.launch &
+#pid="$pid $!"
 
-sleep 3s
+#sleep 3s
 
 echo "Launching navigation stack..."
 roslaunch nav_bundle nav_bundle.launch &

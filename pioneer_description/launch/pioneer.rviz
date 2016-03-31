@@ -3,7 +3,8 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Camera1/Status1
       Splitter Ratio: 0.5
     Tree Height: 387
   - Class: rviz/Selection
@@ -163,7 +164,7 @@ Visualization Manager:
     - Class: rviz/Camera
       Enabled: true
       Image Rendering: background and overlay
-      Image Topic: /pioneer/camera1/image_raw
+      Image Topic: /camera/image_raw
       Name: Camera
       Overlay Alpha: 0.5
       Queue Size: 2

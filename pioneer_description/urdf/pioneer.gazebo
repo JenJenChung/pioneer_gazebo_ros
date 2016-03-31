@@ -14,14 +14,12 @@
   </gazebo>-->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
   
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
-      <robotNamespace>/</robotNamespace>
       <alwaysOn>true</alwaysOn>
       <updateRate>100</updateRate>
       <leftJoint>base_left_wheel_joint</leftJoint>
@@ -143,8 +141,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <robotNamespace>/</robotNamespace>
-        <topicName>/base_scan</topicName>
+        <topicName>base_scan</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>
     </sensor>
@@ -175,10 +172,9 @@
         </noise>
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-        <robotNamespace>/</robotNamespace>
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>pioneer/camera1</cameraName>
+        <cameraName>camera</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_link</frameName>
