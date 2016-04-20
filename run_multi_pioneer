@@ -3,9 +3,14 @@
 my_pid=$$
 echo "My process ID is $my_pid"
 
-echo "Launching Gazebo..."
-roslaunch pioneer_gazebo multi_pioneer_world.launch &
+echo "Launching roscore..."
+roscore &
 pid=$!
+
+echo "Launching Gazebo..."
+sleep 10s
+roslaunch pioneer_gazebo multi_pioneer_world.launch &
+pid="$pid $!"
 
 echo "Loading initialisation parameters..."
 sleep 10s
@@ -23,7 +28,7 @@ done
 
 echo "Launching map server..."
 sleep 5s
-roslaunch nav_bundle map_server.launch &
+roslaunch nav_bundle map_server.launch map_name:=utm_0 &
 pid="$pid $!"
 
 echo "Launching navigation stack..."
