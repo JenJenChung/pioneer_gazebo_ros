@@ -3,8 +3,7 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /Camera1/Status1
+      Expanded: ~
       Splitter Ratio: 0.5
     Tree Height: 387
   - Class: rviz/Selection
@@ -171,6 +170,7 @@ Visualization Manager:
       Transport Hint: raw
       Value: true
       Visibility:
+        Frontier Cells: true
         Global Costmap: true
         Global Planned Path: true
         Goal Pose: true
@@ -262,6 +262,14 @@ Visualization Manager:
         Y: 0
         Z: 0
       Topic: /move_base/TrajectoryPlannerROS/global_plan
+      Value: true
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: Frontier Cells
+      Topic: /frontier_cells
       Value: true
   Enabled: true
   Global Options:

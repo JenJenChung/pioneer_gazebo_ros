@@ -1,0 +1,16 @@
+pioneer1:
+  x: -2
+  y: -10
+  a: 1.57
+pioneer2:
+  x: -2
+  y: 18
+  a: -1.57
+pioneer3:
+  x: 5
+  y: -1
+  a: 0
+pioneer4:
+  x: 21
+  y: -11
+  a: 3.15

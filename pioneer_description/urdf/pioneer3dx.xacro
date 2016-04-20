@@ -398,6 +398,7 @@
     </inertial>
   </link>
   
+  <!-- START: Not sure if I need this, may allow for rosservice calls to gazebo joint manager -->
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="base_left_wheel_joint">
@@ -419,5 +420,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <!-- END: Not sure if I need this -->
 
 </robot>

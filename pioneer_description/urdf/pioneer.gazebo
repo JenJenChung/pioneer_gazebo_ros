@@ -12,11 +12,13 @@
       <topicName>cmd_vel</topicName>
     </plugin>
   </gazebo>-->
+  <!-- START: Not sure if I need this, may allow for rosservice calls to gazebo joint manager -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
+  <!-- END: Not sure if I need this -->
   
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
@@ -150,7 +152,7 @@
 
   <!-- camera -->
   <gazebo reference="camera_link">
-    <sensor type="camera" name="camera1">
+    <sensor type="camera" name="camera">
       <update_rate>30.0</update_rate>
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
