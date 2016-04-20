@@ -3,14 +3,10 @@
 my_pid=$$
 echo "My process ID is $my_pid"
 
-echo "Launching roscore..."
-roscore &
-pid=$!
-
 echo "Launching Gazebo..."
 sleep 10s
 roslaunch pioneer_gazebo multi_pioneer_world.launch &
-pid="$pid $!"
+pid=$!
 
 echo "Loading initialisation parameters..."
 sleep 10s
@@ -30,18 +26,9 @@ sleep 5s
 roslaunch nav_bundle map_server.launch map_name:=utm_0 &
 pid="$pid $!"
 
-echo "Launching navigation stack..."
-sleep 5s
-for i in `seq 1 4`;
-do
-  roslaunch nav_bundle single_navigation.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" &
-  pid="$pid $!"
-  sleep 2s
-done
-
-echo "Launching Rviz..."
-rosrun rviz rviz -d "$(rospack find pioneer_description)/launch/multi_pioneer.rviz" &
-pid="$pid $!"
+#echo "Launching Rviz..."
+#rosrun rviz rviz -d "$(rospack find pioneer_description)/launch/multi_pioneer.rviz" &
+#pid="$pid $!"
 
 trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
 

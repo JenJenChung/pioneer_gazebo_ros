@@ -1,0 +1,13 @@
+1. Hub computer (designated to run Gazebo physics simulation)
+  rosrun pioneer_networking run-pioneer-hub
+2. Remote computers (designated to run Pioneer navigation)
+  roslaunch pioneer_networking pioneer_gateway.launch
+3. Hub computer
+  rosrun pioneer_gazebo run-multi-pioneer-gazebo-master
+  rosrun rocon_flip advertise-from-hub 
+4. Remote computers
+  rosrun rocon_flip pull-from-hub
+  rosrun rocon_flip flip-from-remote
+  roslaunch pioneer_description robot_description.launch
+  rosparam set /use_sim_time true
+  roslaunch nav_bundle single_navigation.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)"
