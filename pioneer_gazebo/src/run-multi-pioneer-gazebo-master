@@ -4,7 +4,6 @@ my_pid=$$
 echo "My process ID is $my_pid"
 
 echo "Launching Gazebo..."
-sleep 10s
 roslaunch pioneer_gazebo multi_pioneer_world.launch &
 pid=$!
 
@@ -25,6 +24,10 @@ echo "Launching map server..."
 sleep 5s
 roslaunch nav_bundle map_server.launch map_name:=utm_0 &
 pid="$pid $!"
+
+echo "Advertising topics..."
+sleep 5s
+rosrun rocon_flip advertise-from-hub &
 
 #echo "Launching Rviz..."
 #rosrun rviz rviz -d "$(rospack find pioneer_description)/launch/multi_pioneer.rviz" &
