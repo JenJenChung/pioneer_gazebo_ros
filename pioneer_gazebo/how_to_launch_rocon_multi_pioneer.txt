@@ -5,5 +5,5 @@
 3. Hub computer
   rosrun pioneer_gazebo run-multi-pioneer-gazebo-master
 4. Remote computers
-  # edit ROBOT_NAME variable in run-pioneer-nav-local to include pioneer number
+  # edit ROBOT_NAME variable in run-pioneer-nav-local line 6 to include pioneer number
   rosrun pioneer_gazebo run-pioneer-nav-local
