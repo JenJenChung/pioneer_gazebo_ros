@@ -16,7 +16,7 @@ roslaunch pioneer_description robot_description.launch
 rosparam set /use_sim_time true
 
 echo "Launching robot navigation packages..."
-namespace=(pioneer1)
+namespace=($ROBOT_NAME)
 roslaunch nav_bundle single_navigation.launch robot_name:=${namespace[0]} x:="$(rosparam get /${namespace[0]}/x)" y:="$(rosparam get /${namespace[0]}/y)" yaw:="$(rosparam get /${namespace[0]}/a)" &
 pid=$!
 
