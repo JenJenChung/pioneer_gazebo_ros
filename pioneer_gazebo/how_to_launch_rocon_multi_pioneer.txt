@@ -7,3 +7,5 @@
 4. Remote computers
   # edit ROBOT_NAME variable in run-pioneer-nav-local line 6 to include pioneer number
   rosrun pioneer_gazebo run-pioneer-nav-local
+5. Hub computer
+  roslaunch pioneer_description multi_pioneer_rviz.launch
