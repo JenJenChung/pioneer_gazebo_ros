@@ -37,7 +37,7 @@ echo "Launching navigation stack..."
 sleep 5s
 for i in `seq 1 1`;
 do
-  roslaunch nav_bundle single_navigation.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" &
+  roslaunch nav_bundle single_navigation_utm_traffic.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" &
   pid="$pid $!"
   sleep 2s
 done
