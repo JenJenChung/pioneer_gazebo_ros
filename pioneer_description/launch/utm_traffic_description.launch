@@ -3,5 +3,5 @@
   <param name="robot_description"
 	 command="$(find xacro)/xacro.py '$(find pioneer_description)/urdf/pioneer3dx.xacro'" />
   
-  <rosparam file="$(find pioneer_description)/launch/pioneer_utm_traffic.yaml" command="load"/>
+  <rosparam file="$(find pioneer_description)/launch/pioneer_utm_traffic_small_world.yaml" command="load"/>
 </launch>
