@@ -12,16 +12,16 @@ pid=$!
 
 echo "Launching Gazebo..."
 sleep 5s
-roslaunch pioneer_gazebo pioneer_traffic_utm_demo_world.launch &
+roslaunch pioneer_gazebo pioneer_traffic_small_world.launch &
 pid="$pid $!"
 
 echo "Loading initialisation parameters..."
 sleep 5s
-roslaunch pioneer_description utm_demo_traffic_description.launch
+roslaunch pioneer_description utm_traffic_description.launch
 
 echo "Launching Pioneers in Gazebo stack..."
 sleep 5s
-for i in `seq 1 1`;
+for i in `seq 1 2`;
 do
   roslaunch pioneer_description generic_pioneer.launch name:=pioneer$i pose:="-x $(rosparam get /pioneer$i/x) -y $(rosparam get /pioneer$i/y) -Y $(rosparam get /pioneer$i/a)" &
   pid="$pid $!"
@@ -30,14 +30,14 @@ done
 
 echo "Launching map server..."
 sleep 5s
-roslaunch nav_bundle map_server.launch map_name:=utm_hardware_demo5 &
+roslaunch nav_bundle map_server.launch map_name:=small_world &
 pid="$pid $!"
 
 echo "Launching navigation stack..."
 sleep 5s
-for i in `seq 1 1`;
+for i in `seq 1 2`;
 do
-  roslaunch nav_bundle single_navigation_utm_traffic.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" &
+  roslaunch nav_bundle single_navigation_utm_traffic_small_world.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" &
   pid="$pid $!"
   sleep 2s
 done
