@@ -1,7 +1,6 @@
 #!/bin/bash
 
-PATH=$(echo $PATH | sed 's|/home/aadi-workstation/anaconda3/bin:||g')
-export PATH=$PATH
+source ~/catkin_ws/devel/setup.bash
  
 my_pid=$$
 echo "My process ID is $my_pid"
@@ -43,13 +42,27 @@ do
 done
 
 echo "Launching agents..."
+sleep 5s
 roslaunch utm_agent utm_agent.launch &
 
+echo "Initializing graph..."
+sleep 5s
+rosrun utm_traffic utm_graph_publisher &
+
 echo "Launching rviz..."
+sleep 5s
 rosrun rviz rviz -d "$(rospack find pioneer_description)/launch/utm_small_world_four_pioneers.rviz" &
-#roslaunch pioneer_description pioneer_rviz.launch &
 pid="$pid $!"
 
+echo "Sending initial waypoints..."
+sleep 5s
+rostopic pub -1 /pioneer1/cmd_map_goal geometry_msgs/Twist '[1.86, -0.26, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[-0.42, -0.26, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer3/cmd_map_goal geometry_msgs/Twist '[1.86, 3.24, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[-0.42, 3.24, 0.0]' '[0.0, 0.0, 0.0]' &
+
 trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
+
+echo "Simulation active"
 
 sleep 24h
