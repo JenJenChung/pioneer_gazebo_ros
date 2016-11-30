@@ -31,3 +31,7 @@ add_dependencies(pioneer_odom_publisher ${catkin_EXPORTED_TARGETS})
 add_executable(pioneer_pid_controller src/pioneer_pid_controller.cpp)
 target_link_libraries(pioneer_pid_controller ${catkin_LIBRARIES})
 add_dependencies(pioneer_pid_controller ${catkin_EXPORTED_TARGETS})
+
+add_executable(move_base_recover src/move_base_recover.cpp)
+target_link_libraries(move_base_recover ${catkin_LIBRARIES})
+add_dependencies(move_base_recover ${catkin_EXPORTED_TARGETS})

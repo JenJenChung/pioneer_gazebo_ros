@@ -47,7 +47,7 @@ def cmd_vel_callback(data):
 	vel_data = data 
 	global recovery_state
 	if (recovery_state and vel_data.linear.x < 0.1):
-		cmd_vel_data = Twist(Vector3(0,0,0), Vector3(0,0,override_z))
+		cmd_vel_data = Twist(Vector3(vel_data.linear.x,0,0), Vector3(0,0,override_z))
 		cmd_vel_pub.publish(cmd_vel_data)
 	elif (vel_data.linear.x == 0 and vel_data.linear.y == 0 and vel_data.linear.z == 0 and 
     	vel_data.angular.x == 0 and vel_data.angular.y == 0 and abs(vel_data.angular.z) <= 0.4):
