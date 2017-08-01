@@ -3,7 +3,7 @@
 my_pid=$$
 echo "My process ID is $my_pid"
 
-export ROBOT_NAME="pioneer1"
+export ROBOT_NAME="pioneer"
 
 echo "Pulling advertised topics..."
 rosrun rocon_flip pull-from-hub

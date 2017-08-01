@@ -16,7 +16,7 @@ roslaunch pioneer_description robot_description.launch
 
 echo "Launching Pioneers in Gazebo stack..."
 sleep 5s
-for i in `seq 1 5`;
+for i in `seq 1 2`;
 do
   roslaunch pioneer_description generic_pioneer.launch name:=pioneer$i pose:="-x $(rosparam get /pioneer$i/x) -y $(rosparam get /pioneer$i/y) -Y $(rosparam get /pioneer$i/a)" &
   pid="$pid $!"

@@ -9,7 +9,8 @@ pid=$!
 sleep 5s
 
 echo "Launching Gazebo..."
-roslaunch pioneer_gazebo pioneer_traffic_small_world_single.launch &
+roslaunch pioneer_gazebo frontier_exploration_world.launch &
+#roslaunch pioneer_gazebo rags_traffic_world.launch &
 pid="$pid $!"
 
 sleep 5s
@@ -27,11 +28,12 @@ pid="$pid $!"
 sleep 3s
 
 echo "Launching controller..."
-roslaunch pioneer_ros pioneer_controller.launch &
+roslaunch pioneer_ros pioneer_controller_spin_recover.launch &
 pid="$pid $!"
 
 echo "Launching Rviz..."
-roslaunch pioneer_description pioneer_rviz.launch &
+roslaunch pioneer_description frontier_map.launch &
+#roslaunch pioneer_description pioneer_rviz.launch &
 pid="$pid $!"
 
 #sleep 1s
