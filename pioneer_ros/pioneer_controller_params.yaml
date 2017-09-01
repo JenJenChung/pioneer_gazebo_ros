@@ -19,7 +19,7 @@ controller_gains:
             d: 0.1
     body:
         linear:
-            p: 1.00
+            p: 0.70
             i: 0.01
             d: 0.1
         angular:
