@@ -32,7 +32,7 @@ roslaunch pioneer_ros pioneer_controller_spin_recover.launch &
 pid="$pid $!"
 
 echo "Launching Rviz..."
-roslaunch pioneer_description frontier_map.launch &
+roslaunch pioneer_description frontier_map.launch rviz_name:=utm_auro &
 #roslaunch pioneer_description pioneer_rviz.launch &
 pid="$pid $!"
 

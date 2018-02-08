@@ -18,7 +18,7 @@ roslaunch pioneer_description utm_demo8_traffic_description.launch
 
 echo "Launching Pioneers in Gazebo stack..."
 sleep 5s
-for i in `seq 1 1`;
+for i in `seq 1 2`;
 do
   roslaunch pioneer_description generic_pioneer.launch name:=pioneer$i pose:="-x $(rosparam get /pioneer$i/x) -y $(rosparam get /pioneer$i/y) -Y $(rosparam get /pioneer$i/a)" &
   pid="$pid $!"
@@ -33,7 +33,7 @@ pid="$pid $!"
 echo "Launching navigation stack..."
 rosparam load $(rospack find utm_traffic)/launch/utm_agent_demo8_params.yaml &
 sleep 5s
-for i in `seq 1 1`;
+for i in `seq 1 2`;
 do
   roslaunch nav_bundle single_navigation_utm_traffic.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" pioneer_traffic:="pioneer_traffic_sim_demo8" waypoint_file:="waypoints_demo8"&
   pid="$pid $!"
