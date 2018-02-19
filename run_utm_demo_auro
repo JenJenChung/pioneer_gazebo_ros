@@ -69,17 +69,17 @@ echo "Sending initial waypoints..."
 sleep 5s
 rostopic pub -1 /pioneer1/cmd_map_goal geometry_msgs/Twist '[17.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
-rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[3.0, -3.0, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[4.0, -4.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
 rostopic pub -1 /pioneer3/cmd_map_goal geometry_msgs/Twist '[17.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
-rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[3.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[4.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
-rostopic pub -1 /pioneer5/cmd_map_goal geometry_msgs/Twist '[19.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer5/cmd_map_goal geometry_msgs/Twist '[20.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
-rostopic pub -1 /pioneer6/cmd_map_goal geometry_msgs/Twist '[1.0, -3.0, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer6/cmd_map_goal geometry_msgs/Twist '[1.0, -4.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
-rostopic pub -1 /pioneer7/cmd_map_goal geometry_msgs/Twist '[19.0, -19.0, 0.0]' '[0.0, 0.0, 0.0]' &
+rostopic pub -1 /pioneer7/cmd_map_goal geometry_msgs/Twist '[20.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
 sleep 15s
 rostopic pub -1 /pioneer8/cmd_map_goal geometry_msgs/Twist '[1.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
 
