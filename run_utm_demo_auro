@@ -17,7 +17,7 @@ sleep 5s
 roslaunch pioneer_description utm_auro_traffic_description.launch
 
 echo "Launching Pioneers in Gazebo stack..."
-n_robots=6
+n_robots=8
 sleep 5s
 for i in `seq 1 $n_robots`;
 do
@@ -47,9 +47,10 @@ rosrun utm_agents utm_manager &
 pid="$pid $!"
 
 echo "Launching agents..."
+n_agents=37
 rosparam load $(rospack find utm_agents)/launch/utm_auro_agents_params.yaml &
 sleep 5s
-for i in `seq 0 37`;
+for i in `seq 0 $n_agents`;
 do
   roslaunch utm_agents utm_agent.launch agentID:=$i num_traffic:=$n_robots&
   pid="$pid $!"
@@ -67,20 +68,20 @@ pid="$pid $!"
 echo "Sending initial waypoints..."
 sleep 5s
 rostopic pub -1 /pioneer1/cmd_map_goal geometry_msgs/Twist '[17.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
-#sleep 5s
-#rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[3.0, -3.0, 0.0]' '[0.0, 0.0, 0.0]' &
-sleep 5s
+sleep 15s
+rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[3.0, -3.0, 0.0]' '[0.0, 0.0, 0.0]' &
+sleep 15s
 rostopic pub -1 /pioneer3/cmd_map_goal geometry_msgs/Twist '[17.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
-#sleep 5s
-#rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[3.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
-sleep 5s
+sleep 15s
+rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[3.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+sleep 15s
 rostopic pub -1 /pioneer5/cmd_map_goal geometry_msgs/Twist '[19.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
-#sleep 5s
-#rostopic pub -1 /pioneer6/cmd_map_goal geometry_msgs/Twist '[1.0, -3.0, 0.0]' '[0.0, 0.0, 0.0]' &
-#sleep 5s
-#rostopic pub -1 /pioneer7/cmd_map_goal geometry_msgs/Twist '[19.0, -19.0, 0.0]' '[0.0, 0.0, 0.0]' &
-#sleep 20s
-#rostopic pub -1 /pioneer8/cmd_map_goal geometry_msgs/Twist '[1.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+sleep 15s
+rostopic pub -1 /pioneer6/cmd_map_goal geometry_msgs/Twist '[1.0, -3.0, 0.0]' '[0.0, 0.0, 0.0]' &
+sleep 15s
+rostopic pub -1 /pioneer7/cmd_map_goal geometry_msgs/Twist '[19.0, -19.0, 0.0]' '[0.0, 0.0, 0.0]' &
+sleep 15s
+rostopic pub -1 /pioneer8/cmd_map_goal geometry_msgs/Twist '[1.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
 
 trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
 
