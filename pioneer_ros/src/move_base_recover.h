@@ -35,7 +35,7 @@ MoveBaseRecover::MoveBaseRecover(ros::NodeHandle nh){
   
   ros::param::get("move_base/TrajectoryPlannerROS/max_vel_theta",thetaThreshold) ;
   ROS_INFO_STREAM("Recovery behaviour with rotate robot in place at " << thetaThreshold << " rad/s") ;
-  timeThreshold = 2.0 ;
+  timeThreshold = 5.0 ;
   fGoal = false ;
   fTimer = false ;
   fRecovery = false ;
