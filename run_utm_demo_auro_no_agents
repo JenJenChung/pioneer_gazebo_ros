@@ -1,0 +1,160 @@
+#!/bin/bash
+ 
+my_pid=$$
+echo "My process ID is $my_pid"
+
+echo "Launching roscore..."
+roscore &
+pid=$!
+
+echo "Launching Gazebo..."
+sleep 5s
+roslaunch pioneer_gazebo pioneer_traffic_utm_auro_world.launch gui:=false &
+pid="$pid $!"
+
+echo "Loading initialisation parameters..."
+sleep 5s
+roslaunch pioneer_description utm_auro_traffic_description.launch
+
+echo "Launching Pioneers in Gazebo stack..."
+n_robots=4
+sleep 5s
+for i in `seq 1 $n_robots`;
+do
+  roslaunch pioneer_description generic_pioneer.launch name:=pioneer$i pose:="-x $(rosparam get /pioneer$i/x) -y $(rosparam get /pioneer$i/y) -Y $(rosparam get /pioneer$i/a)" &
+  pid="$pid $!"
+  sleep 2s
+done
+
+echo "Launching map server..."
+sleep 5s
+roslaunch nav_bundle map_server.launch map_name:=utm_auro &
+pid="$pid $!"
+
+echo "Launching navigation stack..."
+rosparam load $(rospack find utm_traffic)/launch/utm_agent_auro_params.yaml &
+sleep 5s
+for i in `seq 1 $n_robots`;
+do
+  roslaunch nav_bundle single_navigation_utm_auro_traffic.launch robot_name:=pioneer$i x:="$(rosparam get /pioneer$i/x)" y:="$(rosparam get /pioneer$i/y)" yaw:="$(rosparam get /pioneer$i/a)" pioneer_traffic:="pioneer_traffic_sim_auro" waypoint_file:="waypoints_auro"&
+  pid="$pid $!"
+  sleep 2s
+done
+
+#echo "Initializing UTM graph manager..."
+#sleep 5s
+#rosrun utm_agents utm_manager &
+#pid="$pid $!"
+
+#echo "Launching agents..."
+#n_agents=37
+#rosparam load $(rospack find utm_agents)/launch/utm_auro_agents_params.yaml &
+#sleep 5s
+#for i in `seq 0 $n_agents`;
+#do
+#  roslaunch utm_agents utm_agent.launch agentID:=$i num_traffic:=$n_robots&
+#  pid="$pid $!"
+#  sleep 2s
+#done
+echo "Initializing graph..."
+sleep 5s
+rosrun utm_traffic utm_graph_publisher &
+
+echo "Launching rviz..."
+sleep 5s
+roslaunch pioneer_description multi_pioneer_rviz.launch rviz_config:=utm_auro_multi_pioneer&
+pid="$pid $!"
+
+if [ $n_robots -gt 0 ]
+then
+  echo "Sending initial waypoints..."
+  sleep 15s
+  rostopic pub -1 /pioneer1/cmd_map_goal geometry_msgs/Twist '[17.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+if [ $n_robots -gt 1 ]
+then
+  sleep 2s
+  rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[17.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+if [ $n_robots -gt 2 ]
+then
+  sleep 2s
+  rostopic pub -1 /pioneer3/cmd_map_goal geometry_msgs/Twist '[20.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+if [ $n_robots -gt 3 ]
+then
+  sleep 2s
+  rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[20.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+
+sleep 15s
+
+if [ $n_robots -gt 4 ]
+then
+  rostopic pub -1 /pioneer5/cmd_map_goal geometry_msgs/Twist '[4.0, -4.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+if [ $n_robots -gt 5 ]
+then
+  sleep 2s
+  rostopic pub -1 /pioneer6/cmd_map_goal geometry_msgs/Twist '[4.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+if [ $n_robots -gt 6 ]
+then
+  sleep 2s
+  rostopic pub -1 /pioneer7/cmd_map_goal geometry_msgs/Twist '[1.0, -4.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+if [ $n_robots -gt 7 ]
+then
+  sleep 2s
+  rostopic pub -1 /pioneer8/cmd_map_goal geometry_msgs/Twist '[1.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+fi
+
+#if [ $n_robots -gt 0 ]
+#then
+#  echo "Sending initial waypoints..."
+#  sleep 15s
+#  rostopic pub -1 /pioneer1/cmd_map_goal geometry_msgs/Twist '[17.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+#if [ $n_robots -gt 2 ]
+#then
+#  sleep 2s
+#  rostopic pub -1 /pioneer3/cmd_map_goal geometry_msgs/Twist '[17.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+#if [ $n_robots -gt 4 ]
+#then
+#  sleep 2s
+#  rostopic pub -1 /pioneer5/cmd_map_goal geometry_msgs/Twist '[20.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+#if [ $n_robots -gt 6 ]
+#then
+#  sleep 2s
+#  rostopic pub -1 /pioneer7/cmd_map_goal geometry_msgs/Twist '[20.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+
+#sleep 15s
+
+#if [ $n_robots -gt 1 ]
+#then
+#  rostopic pub -1 /pioneer2/cmd_map_goal geometry_msgs/Twist '[4.0, -4.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+#if [ $n_robots -gt 3 ]
+#then
+#  sleep 2s
+#  rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[4.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+#if [ $n_robots -gt 5 ]
+#then
+#  sleep 2s
+#  rostopic pub -1 /pioneer6/cmd_map_goal geometry_msgs/Twist '[1.0, -4.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+#if [ $n_robots -gt 7 ]
+#then
+#  sleep 2s
+#  rostopic pub -1 /pioneer8/cmd_map_goal geometry_msgs/Twist '[1.0, -1.0, 0.0]' '[0.0, 0.0, 0.0]' &
+#fi
+
+trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
+
+echo "Simulation active"
+
+sleep 24h
