@@ -17,7 +17,7 @@ sleep 5s
 roslaunch pioneer_description utm_auro_traffic_description.launch
 
 echo "Launching Pioneers in Gazebo stack..."
-n_robots=4
+n_robots=8
 sleep 5s
 for i in `seq 1 $n_robots`;
 do
