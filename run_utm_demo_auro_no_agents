@@ -28,7 +28,7 @@ done
 
 echo "Launching map server..."
 sleep 5s
-roslaunch nav_bundle map_server.launch map_name:=utm_auro &
+roslaunch nav_bundle map_server.launch map_name:=utm_auro_circ &
 pid="$pid $!"
 
 echo "Launching navigation stack..."
@@ -68,7 +68,7 @@ pid="$pid $!"
 if [ $n_robots -gt 0 ]
 then
   echo "Sending initial waypoints..."
-  sleep 15s
+  sleep 10s
   rostopic pub -1 /pioneer1/cmd_map_goal geometry_msgs/Twist '[17.0, -17.0, 0.0]' '[0.0, 0.0, 0.0]' &
 fi
 if [ $n_robots -gt 1 ]
@@ -87,7 +87,7 @@ then
   rostopic pub -1 /pioneer4/cmd_map_goal geometry_msgs/Twist '[20.0, -20.0, 0.0]' '[0.0, 0.0, 0.0]' &
 fi
 
-sleep 15s
+sleep 10s
 
 if [ $n_robots -gt 4 ]
 then
