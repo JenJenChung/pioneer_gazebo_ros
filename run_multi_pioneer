@@ -17,7 +17,7 @@ pid="$pid $!"
 
 echo "Loading initialisation parameters..."
 sleep 10s
-roslaunch pioneer_description robot_description.launch pose_file:=pioneer_utm_auro
+roslaunch pioneer_description robot_description.launch pose_file:=pioneer_poses
 
 echo "Launching Pioneers in Gazebo stack..."
 sleep 5s
@@ -30,7 +30,7 @@ done
 
 echo "Launching map server..."
 sleep 5s
-roslaunch nav_bundle map_server.launch map_name:=utm_auro &
+roslaunch nav_bundle map_server.launch &
 pid="$pid $!"
 
 echo "Launching navigation stack..."
@@ -43,8 +43,7 @@ do
 done
 
 echo "Launching rviz..."
-#rosrun rviz rviz -d "$(rospack find pioneer_description)/launch/multi_pioneer.rviz" &
-roslaunch pioneer_description multi_pioneer_rviz.launch rviz_config:=utm_auro_multi_pioneer&
+roslaunch pioneer_description multi_pioneer_rviz.launch rviz_config:=multi_pioneer&
 pid="$pid $!"
 
 trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
