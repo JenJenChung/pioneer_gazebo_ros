@@ -10,16 +10,9 @@ sleep 5s
 
 echo "Launching Gazebo..."
 roslaunch pioneer_gazebo frontier_exploration_world.launch &
-#roslaunch pioneer_gazebo rags_traffic_world.launch &
 pid="$pid $!"
 
 sleep 5s
-
-#echo "Launching transform publishers..."
-#roslaunch pioneer_ros pioneer_ros.launch &
-#pid="$pid $!"
-
-#sleep 3s
 
 echo "Launching navigation stack..."
 roslaunch nav_bundle nav_bundle.launch &
@@ -32,16 +25,9 @@ roslaunch pioneer_ros pioneer_controller_spin_recover.launch &
 pid="$pid $!"
 
 echo "Launching Rviz..."
-roslaunch pioneer_description frontier_map.launch rviz_name:=utm_auro &
-#roslaunch pioneer_description pioneer_rviz.launch &
+roslaunch pioneer_description frontier_map.launch &
 pid="$pid $!"
 
-#sleep 1s
-
-#echo "Launching estop..."
-#rqt --standalone rqt_estop
-
-#sleep 1s
 
 trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
 
