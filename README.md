@@ -5,6 +5,6 @@ Please see associated tutorial documentation for installation instructions and o
 
 Documentation can be found at:
 
-http://web.engr.oregonstate.edu/~chungje/code.html
+http://jenjenchung.github.io/anthropomorphic/code.html
 
 Can be incorporated with ESTOP package by nrjl at: https://github.com/nrjl/rqt_estop.git
