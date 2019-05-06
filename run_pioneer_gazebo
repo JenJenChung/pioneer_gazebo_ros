@@ -25,7 +25,7 @@ roslaunch pioneer_ros pioneer_controller_spin_recover.launch &
 pid="$pid $!"
 
 echo "Launching Rviz..."
-roslaunch pioneer_description frontier_map.launch &
+roslaunch pioneer_description frontier_map.launch rviz_name:=pioneer &
 pid="$pid $!"
 
 
